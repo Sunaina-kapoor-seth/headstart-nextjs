@@ -1,23 +1,19 @@
-import { NextApiHandler } from 'next'
+import { NextApiRequest, NextApiResponse } from 'next'
 import { ShipEstimateResponse } from 'ordercloud-javascript-sdk'
 import { OrderCheckoutIntegrationEvent } from './ordercalculate'
 import { withOcWebhookAuth } from '@ordercloud/catalyst'
 
-// withOCWebhookAuth needs the raw body in order to validate the payload is coming from ordercloud
+// Required to allow raw request body for webhook signature validation
 export const config = {
   api: {
     bodyParser: false,
   },
 };
 
-const ShippingRatesHandler: NextApiHandler<ShipEstimateResponse> = (req, res) => {
-  /**
-   * OrderCloud API will pass the OrderWorksheet to the /shippingrates middleware
-   * within the request body. Use this information to calculate shipment estimate groups.
-   * In this example we are not using a third party shipping service. It assumes
-   * all LineItems are in a single ShipEstimate, and the 3 different shipping options
-   * are provided at a fixed rate.
-   * */
+const ShippingRatesHandler = (
+  req: NextApiRequest,
+  res: NextApiResponse<ShipEstimateResponse>
+) => {
   const event = req.body as OrderCheckoutIntegrationEvent
 
   res.status(200).send({
