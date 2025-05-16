@@ -7,7 +7,7 @@ export const config = {
   api: {
     bodyParser: false,
   },
-};
+}
 
 export type OrderCloudEnvironment = 'Production' | 'Staging' | 'Sandbox' | 'Qa'
 
@@ -18,7 +18,7 @@ export interface OrderCheckoutIntegrationEvent<T = null> {
   ConfigData: T
 }
 
-const OrderCalculateHandler: NextApiHandler<OrderCalculateResponse> = (req, res) => {
+const OrderCalculateHandler = (req, res) => {
   const event = req.body as OrderCheckoutIntegrationEvent
 
   return res.status(200).send({
