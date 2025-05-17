@@ -91,7 +91,7 @@ const OcLoginForm: FunctionComponent<OcLoginFormProps> = ({
         />
         Keep me logged in
       </label>
-      <button disabled={loading} type="submit">
+      <button type="submit">
         Submit
       </button>
     </form>

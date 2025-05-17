@@ -190,7 +190,7 @@ const OcAddressForm: FunctionComponent<OcAddressFormProps> = ({
       <button type="button" onClick={handleDiscardChanges} disabled={!hasChanges}>
         Discard Changes
       </button>
-      <button type="submit">{address && address.ID ? 'Update Address' : 'Save Address'}</button>
+      <button type="submit" disabled={!hasChanges}>{address && address.ID ? 'Update Address' : 'Save Address'}</button>
     </form>
   )
 }
