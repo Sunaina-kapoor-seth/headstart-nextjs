@@ -10,6 +10,7 @@ interface OcLineItemCardProps {
   lineItem: LineItem
   editable?: boolean
 }
+/*Demo*/
 
 const OcLineItemCard: FunctionComponent<OcLineItemCardProps> = ({ lineItem, editable }) => {
   const dispatch = useDispatch()
